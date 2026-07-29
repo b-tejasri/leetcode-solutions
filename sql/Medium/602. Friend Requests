@@ -1,0 +1,7 @@
+select id, num from(
+    select id = requester_id, num = sum(num) , rn = rank() over (order by sum(num) desc) from(
+        select requester_id, num = count(*) from RequestAccepted group by requester_id
+        union all
+        select accepter_id, count(*) from RequestAccepted group by accepter_id
+    )a group by requester_id
+)a where rn = 1
