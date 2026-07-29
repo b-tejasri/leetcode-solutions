@@ -1,0 +1,6 @@
+def searchInsert(self, nums, target):
+        for i in range(len(nums)):
+            if target > nums[len(nums)-1]:
+                return len(nums)
+            elif nums[i] >= target:
+                return i
